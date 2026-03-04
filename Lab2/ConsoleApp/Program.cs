@@ -1,10 +1,7 @@
 ﻿using ClassLibrary;
+using ClassLibrary.AbstractFactory;
 using ClassLibrary.Factory.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsoleApp
 {
@@ -13,7 +10,7 @@ namespace ConsoleApp
         public static void Main(string[] args)
         {
             FactoryMethodDemonstration();
-
+            AbstractFactoryMethodDemonstration();
 
         }
 
@@ -30,6 +27,18 @@ namespace ConsoleApp
             sb.AppendLine(preSub.ToString());
 
             Console.WriteLine(sb.ToString());
+        }
+
+        private static void AbstractFactoryMethodDemonstration()
+        {
+            var simsangFactory = new SimsangFactory();
+            var uvidiaFactory = new UvidiaFactory();
+            var venoloFactory = new VenoloFactory();
+
+
+            simsangFactory.CreatePhone().Call("380985446867");
+            uvidiaFactory.CreateLaptop().CompileCode("C#");
+            venoloFactory.CreateEbook().OpenBook("Why");
         }
     }
 }
