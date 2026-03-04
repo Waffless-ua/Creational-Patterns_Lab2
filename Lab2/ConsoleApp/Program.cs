@@ -11,14 +11,19 @@ namespace ConsoleApp
         {
             FactoryMethodDemonstration();
             AbstractFactoryMethodDemonstration();
-
         }
 
         private static void FactoryMethodDemonstration()
         {
-            var domSub = new ManagerCall().CreateSubscription(SubscriptionType.Domestic);
-            var edSub = new MobileApp().CreateSubscription(SubscriptionType.Educational);
-            var preSub = new WebSite().CreateSubscription(SubscriptionType.Premium);
+            SubscriptionCreator creator = new ManagerCall();
+            var domSub = creator.CreateSubscription(SubscriptionType.Domestic);
+
+            creator = new MobileApp();
+            var edSub = creator.CreateSubscription(SubscriptionType.Educational);
+
+            creator = new WebSite();
+            var preSub = creator.CreateSubscription(SubscriptionType.Premium);
+
 
             var sb = new StringBuilder();
 
@@ -31,14 +36,14 @@ namespace ConsoleApp
 
         private static void AbstractFactoryMethodDemonstration()
         {
-            var simsangFactory = new SimsangFactory();
-            var uvidiaFactory = new UvidiaFactory();
-            var venoloFactory = new VenoloFactory();
+            IDeviceFactory deviceFactory = new SimsangFactory();
+            deviceFactory.CreatePhone().Call("380985446867");
 
+            deviceFactory = new UvidiaFactory();
+            deviceFactory.CreateLaptop().CompileCode("C#");
 
-            simsangFactory.CreatePhone().Call("380985446867");
-            uvidiaFactory.CreateLaptop().CompileCode("C#");
-            venoloFactory.CreateEbook().OpenBook("Why");
+            deviceFactory = new VenoloFactory();
+            deviceFactory.CreateEbook().OpenBook("Why");
         }
     }
 }

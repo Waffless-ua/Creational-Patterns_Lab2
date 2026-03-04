@@ -1,6 +1,6 @@
 ﻿namespace ClassLibrary.AbstractFactory
 {
-    interface IDeviceFactory
+    public interface IDeviceFactory
     {
         IPhone CreatePhone();
         ILaptop CreateLaptop();
